@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>리스트를 이용한 메뉴 만들기</title>
+<style type="text/css">
+*						{ margin:0; padding:0 }
+body					{ font-family: '맑은 고딕' 돋움; font-size:0.75em; color:#333; text-align: center;}
+
+.tab-box				{margin: 20px auto; width: 605px;}
+.tab-box ul				{list-style-type: none; height:32px;}
+.tab-box ul	li			{float:right; height:30px; width:115px; background:lightgray; line-height: 30px; border:1px solid; margin-left:4px; border-radius:5px 5px 0 0;}
+.tab-box div			{line-height: 200px; heigth:300px; margin-top:-1px; border: 1px solid; line-height:200px; width:599px; margin-left:4px;}
+.tab-box ul	li.selected {background:lightblue;}
+
+</style>
+
+<script type="text/javascript">
+
+var i = 10;
+console.log(window.i);
+var onTabClicked = function(event){
+	var lisSelected = document.getElementsByClassName('selected');
+	//클릭한 element만 적용
+	(lisSelected.length == 1) && (lisSelected[0].className = '');
+	
+	this.className = 'selected';
+}
+
+window.onload = function(){
+	//div tab-box 여러개 존재 가능 >> 리스트에서 0번째 element 추출
+	var divTabBox = document.getElementsByClassName('tab-box')[0];
+	//추출한 0번째 엘리먼트 >> 1번째 자식 element 추출
+	var ulTabBox = divTabBox.childNodes[1];
+	var lisTab = ulTabBox.getElementsByTagName('li');
+	
+	for(i = 0; i < lisTab.length; i++){
+		lisTab[i].addEventListener('click', onTabClicked);
+	}
+}
+
+</script>
+
+</head>
+<body>
+<div class="tab-box">
+	<ul>
+        <li>메뉴 5</li>
+        <li>메뉴 4</li>
+        <li>메뉴 3</li>
+        <li>메뉴 2</li>
+        <li>메뉴 1</li>
+    </ul>
+    <div>
+    	탭뷰입니다.
+    </div>
+</div>    
+</body>
+</html>
